@@ -1,5 +1,9 @@
 import numpy as np
 
+# NOTE: Gauss-Jordan Elimination has been used and NOT Gauss Elimination.
+#
+# NAMES HERE (IT WON'T BE ON GITHUB LOL)
+
 # Coefficients of the equations (aij)
 equ_1 = []
 equ_2 = []
@@ -26,17 +30,11 @@ print("-------------------")
 for i in range(3):
     const.append(float(input(f"b{i+1}: ")))
 
-### Used for debugging
-# equ_1 = [2, -1, 1]
-# equ_2 = [4, 1, -1]
-# equ_3 = [4, -2, 2]
-# const = [1, 5, 2]
-###
-
-# Construct the matrix
+############ Construct the matrix ############
 matrix = np.array([equ_1, equ_2, equ_3])
 matrix = np.column_stack((matrix, const))
 matrix = matrix.astype(float)
+
 
 print()
 print("Augmented matrix A:")
@@ -57,12 +55,9 @@ def gaussJordan(A)-> None:
     # Used for all rows
     hasLeadingOne = False
 
-    # TODO - Make it work for any number of unknowns
-    # ( for i in range(len(A[0] - 1)) )
-
     ### Row 1 ###
     for i in [0, 1, 2]:
-        if A[i][0] == 1: # the todo
+        if A[i][0] == 1:
             hasLeadingOne = True
             rowSwap(A, 1, i + 1)
             break
@@ -72,7 +67,7 @@ def gaussJordan(A)-> None:
             rowScale(A, 1, 1/A[0][0])
 
         for i in [1, 2]:
-            rowAddScale(A, 1, i + 1, -A[i][0]) # the todo
+            rowAddScale(A, 1, i + 1, -A[i][0])
 
     ### Row 2 ###
     hasLeadingOne = False
